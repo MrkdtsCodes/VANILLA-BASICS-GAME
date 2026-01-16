@@ -1,0 +1,270 @@
+/* RETRO FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* RESET & GLOBAL STYLES */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #121212; 
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    color: white;
+    image-rendering: pixelated; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents scrolling on mobile */
+
+    margin: 0;
+            height: 100vh;
+            overflow: hidden; /* Prevents scrollbars if content overflows */
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* 1. Define the Grid */
+            background-color: black;
+            background-image: 
+                linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+            
+            /* 2. Set the Size (Important for the math below!) */
+            background-size: 100px 100px;
+
+            /* 3. Add the Animation */
+            /* "scrollGrid" is the name, "1s" is speed, "linear" makes it smooth */
+            animation: scrollGrid 1s linear infinite;
+}
+
+/* 4. Define the Animation Logic */
+        @keyframes scrollGrid {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                /* Moves the background 20px down and 20px right */
+                /* This MUST match your background-size to look seamless */
+                background-position: 100px 100px;
+            }
+        }
+
+        .card {
+            
+        
+            padding: 40px;
+           
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+/* MAIN CONSOLE CONTAINER */
+.main_container {
+    height: 100%; /* Fills screen on mobile */
+    width: 100%;
+    max-width: 500px; /* Limits width on desktop */
+    max-height: 900px; /* Limits height on tall screens */
+    display: grid;
+    /* Adjusted Grid for better Mobile spacing */
+    grid-template-rows: 15% 60% 25%; 
+    grid-template-columns: 1fr;
+    
+    background-color: #dcdcdc;
+    border: 4px solid #000;
+    position: relative;
+    /* Shadow removed for mobile default, added back in media query below */
+    z-index: 1;
+}
+
+/* CRT SCANLINE EFFECT */
+.main_container::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.1) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 99;
+    pointer-events: none;
+}
+
+/* GENERAL ITEM RESET */
+.item {
+    position: relative;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- ROW 1: ENEMY HEALTH UI --- */
+.item-1 {
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-bottom: 4px solid #000;
+    z-index: 2;
+    padding-bottom: 2vh; /* Responsive padding */
+}
+
+.item-1 .Healthbar {
+    width: 80%; /* Responsive width */
+    max-width: 250px;
+    height: auto;
+    filter: drop-shadow(4px 4px 0px #000);
+}
+
+/* --- ROW 2: THE BATTLE STAGE --- */
+.item-2 {
+    background: linear-gradient(
+        to bottom, 
+        #61a2ff 0%, 
+        #61a2ff 75%, 
+        #5e9e50 75%, 
+        #5e9e50 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 0; /* Vertical padding scales with screen height */
+    position: relative;
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5); 
+}
+
+/* Monster Styling - Responsive */
+.monster_container img {
+    width: 35vw; /* 35% of the viewport width */
+    max-width: 140px; /* Don't get bigger than this */
+    min-width: 100px; /* Don't get smaller than this */
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Finn Styling - Responsive */
+.finn_main_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 2vh; /* Responsive margin */
+    width: 100%;
+}
+
+.finn_main_container img {
+    width: 45vw; /* Finn is slightly larger than monster */
+    max-width: 180px;
+    min-width: 120px;
+    z-index: 1;
+    transform-origin: bottom center;
+    animation: hero-idle 2s ease-in-out infinite;
+}
+
+/* Finn's Shadow */
+.finn_main_container::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30vw; /* Shadow scales with Finn */
+    max-width: 100px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    z-index: 0;
+    animation: shadow-pulse 2s ease-in-out infinite; 
+}
+
+/* --- ROW 3: CONTROLLER DASHBOARD --- */
+.item-3 {
+    background-color: #222;
+    border-top: 4px solid #000;
+    display: flex;
+    flex-direction: row; /* Stack vertically on small screens */
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    z-index: 100;
+}
+
+/* Responsive Player Health Bar */
+.healthbarplayer svg {
+    width: 90%;
+    max-width: 240px;
+    height: auto;
+    filter: drop-shadow(0px 4px 0px #000);
+}
+
+
+
+.controls-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+/* Responsive Buttons */
+.swordbtn, .healbtn, .finnavatar {
+    width: 18vw; /* Buttons scale with screen width */
+    height: 18vw;
+    max-width: 70px; /* Cap size on desktop */
+    max-height: 70px;
+    min-width: 50px; /* Minimum clickable size */
+    min-height: 50px;
+    cursor: pointer;
+    background: #4a4a4a;
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 
+        inset 2px 2px 0px #ffffff40,
+        inset -2px -2px 0px #00000080,
+        4px 4px 0px #000;
+    transition: all 0.1s;
+}
+
+.swordbtn:active, .healbtn:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+/* --- ANIMATIONS (Unchanged) --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes hero-idle {
+    0% { transform: scaleX(-1) scaleY(1); }
+    50% { transform: scaleX(-0.95) scaleY(1.05); }
+    100% { transform: scaleX(-1) scaleY(1); }
+}
+
+@keyframes shadow-pulse {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+    50% { transform: translateX(-50%) scale(0.9); opacity: 0.2; }
+    100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+}
+
+/* --- DESKTOP SPECIFIC OVERRIDES --- */
+/* If the screen is wider than 550px, add the fancy box shadow back */
+@media (min-width: 550px) {
+    .main_container {
+        height: 95vh;
+        border-radius: 10px;
+        box-shadow: 
+            10px 10px 0px #00000050,
+            inset 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    /* On desktop, we can put controls side-by-side if you prefer, 
+       but column usually looks best for gameboy style */
+}
+
+
