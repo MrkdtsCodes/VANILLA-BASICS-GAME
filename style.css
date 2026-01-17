@@ -27,15 +27,15 @@ body {
             /* 1. Define the Grid */
             background-color: black;
             background-image: 
-                linear-gradient(to right, #e5e5e5 1px, transparent 1px),
-                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+                linear-gradient(to right, #e5e5e5 5px, transparent 1px), /* making horizontal lines  */
+                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px); /*making vertical */
             
             /* 2. Set the Size (Important for the math below!) */
             background-size: 100px 100px;
 
             /* 3. Add the Animation */
             /* "scrollGrid" is the name, "1s" is speed, "linear" makes it smooth */
-            animation: scrollGrid 1s linear infinite;
+            animation: scrollGrid 3s linear infinite;
 }
 
 /* 4. Define the Animation Logic */
@@ -50,15 +50,6 @@ body {
             }
         }
 
-        .card {
-            
-        
-            padding: 40px;
-           
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
 
 /* MAIN CONSOLE CONTAINER */
 .main_container {

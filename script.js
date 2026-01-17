@@ -1,6 +1,9 @@
 const fills = document.querySelectorAll(".healthbar_fill");
+const finnfills = document.querySelectorAll(".healthbar_fill_finnn")
 const attackbutton = document.getElementById("attackBtnn");
 const healBtnn = document.getElementById("healBtnn")
+
+
 
 let plrhealth = 100;
 let plrmaxHealth = 100;
@@ -23,6 +26,16 @@ function updateUIhealthbar(){
 
 }
 
+function plyerhealthupdateUIhealthbar(){
+
+    let percentage = (plrhealth / plrmaxHealth) * 100;
+
+    finnfills.forEach(fill =>{
+        fill.style.width = percentage + "%";
+    })
+
+}
+
 
 function attack(){
     let damage = generateRandomNumber(5, 15);
@@ -38,28 +51,45 @@ function attack(){
     
     if(mntrhealth === 0){
         console.log("GAME OVER");
-    }
+    }   
 
+    setTimeout(monsterattack, 1000);
+}
+
+function monsterattack(){
+    let mnstrdamage = generateRandomNumber(5, 15);
+
+    plrhealth -= mnstrdamage;
+
+     if(plrhealth <= 0){
+        plrhealth = 0;
+        
+    }
     
+     plyerhealthupdateUIhealthbar(); // update UI
+    
+    if(plrhealth === 0){
+        console.log("GAME OVER");
+    }
 }
 
 function healplayer() {
     const healAmount = 10;
     
-    if (mntrhealth >= mntrmaxhealth) {
+    if (plrhealth >= plrmaxHealth) {
         console.log("Health is already full!");
         return;
     }
 
-    health += healAmount;
+    plrhealth += healAmount;
 
     // Cap health at max
-    if (mntrhealth > mntrmaxhealth) {
-        mntrhealth = mntrmaxhealth;
+    if (plrhealth > plrmaxHealth) {
+        plrhealth = plrmaxHealth;
     }
 
-    console.log(`Healed! Current Health: ${mntrhealth}`);
-    updateUIhealthbar();
+    console.log(`Healed! Current Health: ${plrhealth}`);
+    plyerhealthupdateUIhealthbar();
 }
 
 
