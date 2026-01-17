@@ -53,7 +53,7 @@ function attack(){
         console.log("GAME OVER");
     }   
 
-    setTimeout(monsterattack, 1000);
+    setTimeout(monsterattack, 1000);//turnbased adding this para maing salitan ang attack
 }
 
 function monsterattack(){
