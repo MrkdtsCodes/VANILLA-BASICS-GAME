@@ -13,6 +13,8 @@ let mntrhealth = 100;
 let mntrmaxhealth = 100;
 
 
+
+
 const generateRandomNumber = (min, max)=> Math.floor(Math.random() * (max - min + 1)) + min;
 
 
@@ -46,12 +48,18 @@ function attack(){
         mntrhealth = 0;
         
     }
+
+    
+
     
      updateUIhealthbar(); // update UI
-    
-    if(mntrhealth === 0){
+
+     if(mntrhealth === 0   || plrhealth === 0){
         console.log("GAME OVER");
+        return
+
     }   
+      
 
     setTimeout(monsterattack, 1000);//turnbased adding this para maing salitan ang attack
 }
@@ -71,6 +79,8 @@ function monsterattack(){
     if(plrhealth === 0){
         console.log("GAME OVER");
     }
+
+    attackbutton.disabled = false;
 }
 
 function healplayer() {
@@ -78,6 +88,11 @@ function healplayer() {
     
     if (plrhealth >= plrmaxHealth) {
         console.log("Health is already full!");
+        return;
+    }
+
+    if(plrhealth <= 0){
+         console.log("Can't Heal Anymore");
         return;
     }
 
@@ -104,4 +119,20 @@ function healplayer() {
 // })
 
 healBtnn.addEventListener("click", () => healplayer());
-attackbutton.addEventListener("click", () => attack());
+// attackbutton.addEventListener("click", () => attack());
+
+
+attackbutton.addEventListener("click", event =>{
+    //una check niya kuung puno buhay nung monster or player
+    if(mntrhealth === 0 || plrhealth ===0){
+        let gamemode = alert("Game Over kapatid na jissica");
+        return gamemode; //  i've learned that the return keyword stops the code below
+    }
+    attackbutton.disabled = true;
+    attack()
+
+
+    
+
+    //panagalwa is yung pag disbale sa btn after ma click 
+})
