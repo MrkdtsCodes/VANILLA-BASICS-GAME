@@ -1,5 +1,6 @@
-
-
+http://vanillagamedts.netlify.app/
+<br>
+<br>
 This is My first Project in Learning Fundamentals of Javascript, learning this is quite fun and stressing to build but building this help me in alot of area,
 here's a list of the things I've learn:
   <br>-what is function?<br>
