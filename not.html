@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated CSS Grid</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* Prevents scrollbars if content overflows */
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* 1. Define the Grid */
+            background-color: black;
+            background-image: 
+                linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+            
+            /* 2. Set the Size (Important for the math below!) */
+            background-size: 100px 100px;
+
+            /* 3. Add the Animation */
+            /* "scrollGrid" is the name, "1s" is speed, "linear" makes it smooth */
+            animation: scrollGrid 2s linear infinite;
+        }
+
+        /* 4. Define the Animation Logic */
+        @keyframes scrollGrid {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                /* Moves the background 20px down and 20px right */
+                /* This MUST match your background-size to look seamless */
+                background-position: 100px 100px;
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 1; /* Ensures box sits on top of lines */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Animated Grid</h1>
+        <p>The background is moving diagonally.</p>
+    </div>
+
+</body>
+</html>
